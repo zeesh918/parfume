@@ -1,0 +1,1855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Zeesh Parfume — Haute Parfumerie | Arab Desert, L'Eau Terre & Zeesh Fresh</title>
+
+  <!-- Google Fonts: Crisp Modern Sans-Serif -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================
+       DESIGN SYSTEM TOKENS & PALETTE
+       ========================================================== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --font-display: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+      /* Arab Desert & Travertine Sand Accent System */
+      --color-brand-sand: #BA7336; /* Warm Desert Sand */
+      --color-brand-sand-hover: #9E5D26; /* Deep Desert Dune */
+      --color-brand-sand-light: rgba(186, 115, 54, 0.14); /* Subtle Desert Sand Wash */
+      --color-brand-sand-shadow: rgba(186, 115, 54, 0.38); /* Warm Sand Shadow */
+
+      /* Backwards-compatibility aliases */
+      --color-brand-red: var(--color-brand-sand);
+      --color-brand-red-hover: var(--color-brand-sand-hover);
+      --color-brand-red-light: var(--color-brand-sand-light);
+
+      --color-ink: #111111;
+      --color-ink-muted: #423830;
+      --color-sand-gold: #C29F5A;
+
+      /* Glassmorphism Presets */
+      --nav-glass-bg: rgba(255, 255, 255, 0.78);
+      --nav-glass-border: rgba(255, 255, 255, 0.88);
+      --nav-shadow: 0 10px 30px rgba(40, 20, 10, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04);
+
+      /* Smoked warm glass matching desert canyon and travertine stone */
+      --card-glass-bg: rgba(205, 185, 168, 0.44);
+      --card-glass-border: rgba(255, 255, 255, 0.55);
+      --card-shadow: 0 20px 45px rgba(25, 15, 8, 0.22), 0 4px 14px rgba(0, 0, 0, 0.06);
+
+      --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* FULLPAGE SCROLL SNAP SETUP */
+    html {
+      width: 100%;
+      min-height: 100%;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      overflow-y: auto;
+      scroll-snap-type: y mandatory;
+    }
+
+    body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      font-family: var(--font-sans);
+      color: var(--color-ink);
+      background-color: #CDB393;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Elegant Minimal Scrollbar */
+    body::-webkit-scrollbar {
+      width: 6px;
+    }
+    body::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.04);
+    }
+    body::-webkit-scrollbar-thumb {
+      background: rgba(186, 115, 54, 0.45);
+      border-radius: 10px;
+    }
+    body::-webkit-scrollbar-thumb:hover {
+      background: rgba(186, 115, 54, 0.75);
+    }
+
+    /* ==========================================================
+       COMMON SECTION STYLING & SNAPPING
+       ========================================================== */
+    .hero-section {
+      position: relative;
+      width: 100%;
+      max-width: 100vw;
+      min-height: 100vh;
+      min-height: 100dvh;
+      height: 100vh;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+
+    /* SECTION 1: ARAB DESERT (RICH OUD) */
+    .hero-section.section-rich-oud {
+      background-image: url('photo/pc.webp');
+      background-size: cover;
+      background-position: center right;
+      background-repeat: no-repeat;
+    }
+
+    @media (max-width: 900px) {
+      .hero-section.section-rich-oud {
+        background-image: url('photo/mobile.webp');
+        background-position: center center;
+      }
+    }
+
+    .hero-section.section-rich-oud::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      background: radial-gradient(
+        circle at 65% 25%,
+        rgba(255, 210, 160, 0.15) 0%,
+        rgba(0, 0, 0, 0.02) 55%,
+        rgba(25, 15, 8, 0.22) 100%
+      );
+    }
+
+    /* SECTION 2: L'EAU TERRE (EARTH & TRAVERTINE) */
+    .hero-section.section-terre {
+      background-image: url('photo/2.webp');
+      background-size: cover;
+      background-position: 65% center;
+      background-repeat: no-repeat;
+    }
+
+    @media (max-width: 900px) {
+      .hero-section.section-terre {
+        background-image: url('photo/2.webp');
+        background-position: center center;
+      }
+    }
+
+    .hero-section.section-terre::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      background: radial-gradient(
+        circle at 68% 36%,
+        rgba(255, 245, 230, 0.22) 0%,
+        rgba(0, 0, 0, 0.02) 55%,
+        rgba(35, 25, 18, 0.26) 100%
+      );
+    }
+
+    /* SECTION 3: ZEESH FRESH (CITRUS, NEROLI & TRAVERTINE) */
+    .hero-section.section-fresh {
+      background-image: url('photo/3.webp');
+      background-size: cover;
+      background-position: 72% center;
+      background-repeat: no-repeat;
+    }
+
+    @media (max-width: 900px) {
+      .hero-section.section-fresh {
+        background-image: url('photo/3.webp');
+        background-position: 96% 25%;
+      }
+    }
+
+    .hero-section.section-fresh::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      background: radial-gradient(
+        circle at 72% 38%,
+        rgba(255, 248, 225, 0.24) 0%,
+        rgba(0, 0, 0, 0.02) 55%,
+        rgba(32, 24, 15, 0.28) 100%
+      );
+    }
+
+    /* Inner Viewport Container */
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 100vw;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin: 0 auto;
+      padding: clamp(0.75rem, 2vh, 1.6rem) clamp(1rem, 3.5vw, 3.5rem);
+      padding-top: clamp(4.4rem, 8.5vh, 6rem); /* Space for fixed floating header */
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    /* ==========================================================
+       1. FIXED FLOATING FROSTED PILL HEADER
+       ========================================================== */
+    .header-wrapper {
+      position: fixed;
+      top: clamp(0.75rem, 2vh, 1.5rem);
+      left: 0;
+      right: 0;
+      width: 100%;
+      max-width: 100vw;
+      display: flex;
+      justify-content: center;
+      flex-shrink: 0;
+      z-index: 90;
+      pointer-events: none;
+      padding: 0 clamp(1rem, 3.5vw, 3.5rem);
+      box-sizing: border-box;
+    }
+
+    .top-pill-header {
+      pointer-events: auto;
+      width: min(100%, 520px);
+      max-width: 100%;
+      background: var(--nav-glass-bg);
+      backdrop-filter: blur(25px) saturate(180%);
+      -webkit-backdrop-filter: blur(25px) saturate(180%);
+      border: 1px solid var(--nav-glass-border);
+      border-radius: 18px;
+      padding: 0.6rem 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--nav-shadow);
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+    }
+
+    .top-pill-header:hover {
+      box-shadow: 0 14px 35px rgba(35, 20, 10, 0.16);
+      border-color: rgba(255, 255, 255, 0.95);
+    }
+
+    /* Left: Hamburger Button */
+    .nav-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-ink);
+      padding: 4px;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      line-height: 0;
+      flex-shrink: 0;
+    }
+
+    .nav-btn:hover {
+      color: var(--color-brand-sand);
+      transform: scale(1.05);
+    }
+
+    .hamburger-icon {
+      width: 20px;
+      height: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hamburger-icon span {
+      display: block;
+      width: 100%;
+      height: 2.2px;
+      background-color: currentColor;
+      border-radius: 2px;
+    }
+
+    /* Center: Brand Name in Signature Desert Sand Accent */
+    .brand-logo-link {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-logo-text {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 2vw, 1.52rem);
+      font-weight: 800;
+      letter-spacing: -0.015em;
+      color: var(--color-brand-sand);
+      text-transform: none;
+      line-height: 1;
+      transition: transform 0.25s ease;
+    }
+
+    .brand-logo-link:hover .brand-logo-text {
+      transform: scale(1.02);
+    }
+
+    /* Right: Actions (Search, Profile, Cart) */
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: clamp(0.7rem, 1.2vw, 1.1rem);
+      flex-shrink: 0;
+    }
+
+    .cart-btn-wrapper {
+      position: relative;
+    }
+
+    .cart-count-badge {
+      position: absolute;
+      top: -6px;
+      right: -8px;
+      background: var(--color-brand-sand);
+      color: #FFFFFF;
+      font-size: 0.55rem;
+      font-weight: 800;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(186, 115, 54, 0.45);
+      transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .cart-count-badge.pulse {
+      transform: scale(1.35);
+    }
+
+    /* ==========================================================
+       2. PRODUCT STAGE & FROSTED GLASS CARDS
+       ========================================================== */
+    .hero-stage {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+      max-width: 480px;
+      margin: auto 0;
+      flex-shrink: 1;
+      z-index: 10;
+    }
+
+    /* The Smoked Frosted Glass Product Card */
+    .arab-desert-card {
+      position: relative;
+      background: var(--card-glass-bg);
+      backdrop-filter: blur(28px) saturate(160%);
+      -webkit-backdrop-filter: blur(28px) saturate(160%);
+      border: 1px solid var(--card-glass-border);
+      border-radius: 22px;
+      padding: clamp(1.2rem, 2.4vh, 1.7rem) clamp(1.2rem, 2.2vw, 1.8rem);
+      box-shadow: var(--card-shadow);
+      color: var(--color-ink);
+      box-sizing: border-box;
+      overflow: hidden;
+      width: 100%;
+      max-width: 100%;
+      transition: transform 0.3s var(--ease-smooth), box-shadow 0.3s var(--ease-smooth);
+    }
+
+    .arab-desert-card:hover {
+      box-shadow: 0 26px 60px rgba(25, 15, 8, 0.26);
+    }
+
+    /* Subtle top glass highlight */
+    .arab-desert-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1.2px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.9),
+        transparent
+      );
+    }
+
+    /* Card Top Row: Product Title & Specs on Left, Pricing on Right */
+    .card-product-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.6rem;
+      margin-bottom: clamp(0.7rem, 1.6vh, 1.2rem);
+      width: 100%;
+    }
+
+    .card-title-col {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    .product-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-ink);
+      line-height: 1.05;
+      margin-bottom: 0.35rem;
+    }
+
+    .product-specs {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .spec-line {
+      font-family: var(--font-display);
+      font-size: clamp(0.62rem, 0.9vw, 0.72rem);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-ink-muted);
+      line-height: 1.4;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Price Block (Right side) */
+    .card-price-col {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      text-align: right;
+      flex-shrink: 0;
+      margin-left: 0.5rem;
+    }
+
+    .price-main {
+      font-family: var(--font-display);
+      font-size: clamp(1.35rem, 2.2vw, 1.8rem);
+      font-weight: 800;
+      color: var(--color-ink);
+      line-height: 1.1;
+      display: flex;
+      align-items: flex-start;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+
+    .price-currency {
+      font-size: 0.72em;
+      margin-right: 1px;
+      font-weight: 700;
+    }
+
+    .price-strikethrough {
+      font-family: var(--font-display);
+      font-size: clamp(0.72rem, 1.05vw, 0.88rem);
+      font-weight: 700;
+      color: var(--color-brand-sand);
+      text-decoration: line-through;
+      margin-top: 2px;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+
+    /* Evocative Fragrance Description */
+    .product-description {
+      font-family: var(--font-sans);
+      font-size: clamp(0.7rem, 1.05vw, 0.8rem);
+      line-height: 1.45;
+      color: var(--color-ink-muted);
+      margin-bottom: clamp(0.6rem, 1.3vh, 0.9rem);
+      letter-spacing: 0.01em;
+      font-weight: 500;
+    }
+
+    /* Olfactory Notes Badges (Subtle frosted pills) */
+    .card-notes-pills {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-bottom: clamp(0.7rem, 1.5vh, 1.1rem);
+      width: 100%;
+    }
+
+    .note-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.32rem;
+      padding: 0.25rem 0.6rem;
+      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      border-radius: 100px;
+      font-size: 0.6rem;
+      font-weight: 600;
+      color: var(--color-ink);
+      letter-spacing: 0.02em;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .note-pill:hover {
+      background: #FFFFFF;
+      transform: translateY(-1px);
+    }
+
+    .note-pill .dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--color-brand-sand);
+      flex-shrink: 0;
+    }
+
+    /* Bottom Action Controls: Quantity + Add To Cart */
+    .card-actions-row {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      width: 100%;
+    }
+
+    /* Quantity Pill */
+    .qty-control {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100px;
+      height: 48px;
+      background: rgba(0, 0, 0, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 14px;
+      padding: 0 0.4rem;
+      flex-shrink: 0;
+      user-select: none;
+    }
+
+    .qty-btn {
+      background: none;
+      border: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--color-ink);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      line-height: 1;
+    }
+
+    .qty-btn:hover {
+      background: rgba(255, 255, 255, 0.7);
+      color: var(--color-brand-sand);
+    }
+
+    .qty-val {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--color-ink);
+      min-width: 18px;
+      text-align: center;
+    }
+
+    /* Primary Desert Sand "+ ADD TO CART" Button */
+    .btn-add-to-cart {
+      flex: 1 1 auto;
+      height: 48px;
+      background: var(--color-brand-sand);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 14px;
+      font-family: var(--font-display);
+      font-size: clamp(0.76rem, 1.1vw, 0.88rem);
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(186, 115, 54, 0.45);
+      transition: all 0.25s var(--ease-smooth);
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-add-to-cart:hover {
+      background: var(--color-brand-sand-hover);
+      box-shadow: 0 8px 26px rgba(186, 115, 54, 0.6);
+      transform: translateY(-1px);
+    }
+
+    .btn-add-to-cart:active {
+      transform: translateY(1px);
+    }
+
+    .btn-add-to-cart::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+      transform: skewX(-20deg);
+      transition: left 0.75s ease;
+    }
+
+    .btn-add-to-cart:hover::after {
+      left: 140%;
+    }
+
+    /* ==========================================================
+       3. FOOTER PROVENANCE BAR & INTER-SECTION SCROLL CUES
+       ========================================================== */
+    .hero-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+      padding-top: clamp(0.35rem, 0.8vh, 0.65rem);
+      border-top: 1px solid rgba(255, 255, 255, 0.25);
+      z-index: 10;
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
+      gap: 1rem;
+    }
+
+    .footer-provenance {
+      display: flex;
+      align-items: center;
+      gap: clamp(0.6rem, 1.8vw, 1.8rem);
+      margin-left: 54px; /* Clear gift button */
+      flex-wrap: nowrap;
+      overflow: hidden;
+    }
+
+    .prov-item {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.6rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      text-shadow: 0 2px 8px rgba(40, 25, 10, 0.55);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .prov-item::before {
+      content: '✦';
+      font-size: 0.5rem;
+      color: var(--color-sand-gold);
+    }
+
+    /* Sleek Section Transition Cues */
+    .scroll-cue-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.95rem;
+      background: rgba(255, 255, 255, 0.38);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      border-radius: 100px;
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+      transition: all 0.25s ease;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .scroll-cue-btn:hover {
+      background: #FFFFFF;
+      color: var(--color-ink);
+      text-shadow: none;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+    }
+
+    .scroll-cue-btn svg {
+      transition: transform 0.25s ease;
+    }
+
+    .scroll-cue-btn:hover svg {
+      transform: translateY(2px);
+    }
+
+    .scroll-cue-btn.scroll-up:hover svg {
+      transform: translateY(-2px);
+    }
+
+    .footer-edition-tag {
+      font-size: 0.6rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      text-shadow: 0 2px 8px rgba(40, 25, 10, 0.5);
+      font-weight: 600;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* ==========================================================
+       4. FLOATING SIDE NAV INDICATOR
+       ========================================================== */
+    .side-section-nav {
+      position: fixed;
+      right: clamp(1rem, 2vw, 2.2rem);
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      z-index: 80;
+    }
+
+    .side-nav-dot {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.65);
+      font-family: var(--font-display);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .side-nav-dot .dot-label {
+      opacity: 0;
+      transform: translateX(8px);
+      transition: all 0.25s ease;
+      white-space: nowrap;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+    }
+
+    .side-nav-dot:hover .dot-label,
+    .side-nav-dot.active .dot-label {
+      opacity: 1;
+      transform: translateX(0);
+      color: #FFFFFF;
+    }
+
+    .side-nav-dot .dot-circle {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.45);
+      border: 1.5px solid rgba(255, 255, 255, 0.75);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .side-nav-dot:hover .dot-circle {
+      background: rgba(255, 255, 255, 0.95);
+      transform: scale(1.25);
+    }
+
+    .side-nav-dot.active .dot-circle {
+      background: var(--color-brand-sand);
+      border-color: #FFFFFF;
+      box-shadow: 0 0 10px rgba(186, 115, 54, 0.9);
+      transform: scale(1.4);
+    }
+
+    /* ==========================================================
+       5. FLOATING GIFT BOX BUTTON (BOTTOM LEFT CORNER)
+       ========================================================== */
+    .floating-gift-btn {
+      position: fixed;
+      bottom: clamp(14px, 2.5vh, 26px);
+      left: clamp(14px, 2.5vw, 26px);
+      width: 44px;
+      height: 44px;
+      background: var(--color-brand-sand);
+      border: none;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(186, 115, 54, 0.45);
+      z-index: 100;
+      transition: transform 0.25s var(--ease-smooth), box-shadow 0.25s ease;
+    }
+
+    .floating-gift-btn:hover {
+      transform: scale(1.08) rotate(-4deg);
+      box-shadow: 0 10px 25px rgba(186, 115, 54, 0.65);
+      background: var(--color-brand-sand-hover);
+    }
+
+    /* ==========================================================
+       6. SLIDE-OUT MOBILE / FULL DRAWER
+       ========================================================== */
+    .mobile-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 15, 10, 0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 998;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+
+    .mobile-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 84%;
+      max-width: 340px;
+      height: 100vh;
+      height: 100dvh;
+      background: rgba(255, 251, 245, 0.95);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border-left: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: -15px 0 45px rgba(25, 15, 8, 0.25);
+      z-index: 999;
+      transform: translateX(100%);
+      transition: transform 0.4s var(--ease-smooth);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2.2rem 1.8rem;
+    }
+
+    .mobile-drawer.open {
+      transform: translateX(0);
+    }
+
+    .drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid rgba(20, 17, 14, 0.1);
+    }
+
+    .drawer-logo {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--color-brand-sand);
+      text-transform: none;
+      letter-spacing: -0.015em;
+    }
+
+    .drawer-close {
+      background: none;
+      border: none;
+      color: var(--color-ink);
+      font-size: 1.8rem;
+      line-height: 1;
+      cursor: pointer;
+      padding: 4px;
+      transition: color 0.2s ease;
+    }
+
+    .drawer-close:hover {
+      color: var(--color-brand-sand);
+    }
+
+    .drawer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+      margin: 1.8rem 0;
+    }
+
+    .drawer-links a {
+      color: var(--color-ink);
+      text-decoration: none;
+      font-size: 0.84rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .drawer-links a:hover {
+      color: var(--color-brand-sand);
+      transform: translateX(4px);
+    }
+
+    .drawer-links a span.tag {
+      font-size: 0.58rem;
+      padding: 2px 8px;
+      border-radius: 100px;
+      background: var(--color-brand-sand-light);
+      color: var(--color-brand-sand);
+      font-weight: 700;
+    }
+
+    /* Toast Notification */
+    .toast-notification {
+      position: fixed;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-100px);
+      background: #FFFFFF;
+      color: var(--color-ink);
+      padding: 0.75rem 1.4rem;
+      border-radius: 100px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      z-index: 1000;
+      opacity: 0;
+      transition: all 0.4s var(--ease-smooth);
+      pointer-events: none;
+    }
+
+    .toast-notification.active {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .toast-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-brand-sand);
+    }
+
+    /* Gift Modal */
+    .gift-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 10, 8, 0.65);
+      backdrop-filter: blur(8px);
+      z-index: 998;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .gift-modal-backdrop.open {
+      display: flex;
+    }
+
+    .gift-modal-card {
+      background: #FFFFFF;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 400px;
+      padding: 2rem 1.8rem;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+      text-align: center;
+      position: relative;
+      animation: modalPop 0.3s var(--ease-smooth);
+    }
+
+    @keyframes modalPop {
+      0% { transform: scale(0.9); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .gift-modal-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      background: var(--color-brand-sand);
+      color: #FFFFFF;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      box-shadow: 0 8px 24px rgba(186, 115, 54, 0.4);
+    }
+
+    .gift-modal-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--color-ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .gift-modal-body {
+      font-size: 0.82rem;
+      line-height: 1.55;
+      color: var(--color-ink-muted);
+      margin-bottom: 1.4rem;
+    }
+
+    /* ==========================================================
+       7. RESPONSIVE MOBILE ADAPTATION
+       ========================================================== */
+    @media (max-width: 900px) {
+      .hero-inner {
+        padding: clamp(0.5rem, 1.5vh, 0.85rem) clamp(0.7rem, 2.5vw, 1.1rem);
+        padding-top: clamp(3.8rem, 6.8vh, 4.8rem);
+      }
+
+      .header-wrapper {
+        top: 0.5rem;
+        padding: 0 0.7rem;
+      }
+
+      .top-pill-header {
+        width: 100%;
+        padding: 0.48rem 0.85rem;
+        border-radius: 14px;
+      }
+
+      .brand-logo-text {
+        font-size: clamp(1.02rem, 3.8vw, 1.18rem);
+      }
+
+      .nav-actions {
+        gap: 0.6rem;
+      }
+
+      /* Anchor cards cleanly in lower viewport on mobile */
+      .hero-stage {
+        width: 100%;
+        max-width: 100%;
+        margin-top: auto;
+        margin-bottom: clamp(0.3rem, 0.8vh, 0.6rem);
+        align-items: stretch;
+      }
+
+      .arab-desert-card {
+        width: 100%;
+        padding: 0.85rem 0.9rem;
+        border-radius: 16px;
+      }
+
+      .card-product-header {
+        margin-bottom: 0.55rem;
+      }
+
+      .product-title {
+        font-size: 1.15rem;
+        margin-bottom: 0.2rem;
+      }
+
+      .spec-line {
+        font-size: 0.56rem;
+        letter-spacing: 0.06em;
+      }
+
+      .price-main {
+        font-size: 1.18rem;
+      }
+
+      .price-strikethrough {
+        font-size: 0.68rem;
+      }
+
+      .product-description {
+        font-size: 0.64rem;
+        line-height: 1.35;
+        margin-bottom: 0.45rem;
+      }
+
+      .card-notes-pills {
+        margin-bottom: 0.55rem;
+        gap: 0.25rem;
+      }
+
+      .note-pill {
+        font-size: 0.52rem;
+        padding: 0.18rem 0.4rem;
+      }
+
+      .card-actions-row {
+        gap: 0.45rem;
+      }
+
+      .qty-control {
+        width: 82px;
+        height: 40px;
+        border-radius: 10px;
+      }
+
+      .qty-btn {
+        width: 22px;
+        height: 22px;
+        font-size: 0.95rem;
+      }
+
+      .qty-val {
+        font-size: 0.85rem;
+      }
+
+      .btn-add-to-cart {
+        height: 40px;
+        font-size: 0.74rem;
+        border-radius: 10px;
+        letter-spacing: 0.05em;
+      }
+
+      .hero-footer {
+        padding-top: 0.3rem;
+      }
+
+      .footer-provenance {
+        gap: 0.55rem;
+        margin-left: 42px;
+      }
+
+      .footer-provenance .prov-item:nth-child(n+3) {
+        display: none;
+      }
+
+      .prov-item {
+        font-size: 0.48rem;
+        letter-spacing: 0.1em;
+      }
+
+      .scroll-cue-btn {
+        padding: 0.24rem 0.6rem;
+        font-size: 0.52rem;
+      }
+
+      .footer-edition-tag {
+        display: none;
+      }
+
+      .side-section-nav {
+        display: none;
+      }
+
+      .floating-gift-btn {
+        width: 34px;
+        height: 34px;
+        bottom: 8px;
+        left: 8px;
+        border-radius: 9px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================
+       TOP FIXED FROSTED PILL HEADER (PERSISTS ACROSS ALL SECTIONS)
+       ========================================================== -->
+  <div class="header-wrapper">
+    <header class="top-pill-header" role="banner">
+      <!-- Hamburger Menu Button -->
+      <button class="nav-btn" id="openMenu" aria-label="Open Navigation Menu">
+        <div class="hamburger-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+
+      <!-- Brand Name in Signature Desert Sand Accent -->
+      <a href="#hero" class="brand-logo-link" aria-label="Zeesh Parfume">
+        <span class="brand-logo-text">Zeesh Parfume</span>
+      </a>
+
+      <!-- Right Icons: Search, Profile, Shopping Cart -->
+      <div class="nav-actions">
+        <button class="nav-btn" id="searchBtn" aria-label="Search Collection">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+
+        <button class="nav-btn" id="userBtn" aria-label="Account Profile">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </button>
+
+        <div class="cart-btn-wrapper">
+          <button class="nav-btn" id="cartBtn" aria-label="Shopping Cart">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+          </button>
+          <span class="cart-count-badge" id="cartCountBadge">0</span>
+        </div>
+      </div>
+    </header>
+  </div>
+
+  <!-- ==========================================================
+       SIDE SECTION NAVIGATOR (DOTS INDICATOR)
+       ========================================================== -->
+  <nav class="side-section-nav" aria-label="Sections Navigation">
+    <a href="#hero" class="side-nav-dot active" data-section="hero" aria-label="Go to Rich Oud">
+      <span class="dot-label">01 RICH OUD</span>
+      <span class="dot-circle"></span>
+    </a>
+    <a href="#terre" class="side-nav-dot" data-section="terre" aria-label="Go to L'Eau Terre">
+      <span class="dot-label">02 L'EAU TERRE</span>
+      <span class="dot-circle"></span>
+    </a>
+    <a href="#fresh" class="side-nav-dot" data-section="fresh" aria-label="Go to Zeesh Fresh">
+      <span class="dot-label">03 ZEESH FRESH</span>
+      <span class="dot-circle"></span>
+    </a>
+  </nav>
+
+  <!-- ==========================================================
+       SECTION 1: HERO CONTAINER (RICH OUD · ARAB DESERT EDITION)
+       ========================================================== -->
+  <section class="hero-section section-rich-oud" id="hero">
+    <div class="hero-inner">
+      
+      <!-- Center Stage: Frosted Glass Product Card (Rich Oud) -->
+      <main class="hero-stage" role="main">
+        <article class="arab-desert-card">
+          
+          <!-- Card Header: Title & Specs on Left, Pricing on Right -->
+          <div class="card-product-header">
+            <div class="card-title-col">
+              <h1 class="product-title">RICH OUD</h1>
+              <div class="product-specs">
+                <span class="spec-line">INSPIRED BY OMBRE NOMADE</span>
+                <span class="spec-line">FOR HIM &amp; HER</span>
+                <span class="spec-line">50 ML &mdash; EXTRAIT DE PARFUM</span>
+              </div>
+            </div>
+
+            <!-- Price & Strikethrough Discount in Desert Sand Accent -->
+            <div class="card-price-col">
+              <div class="price-main">
+                <span class="price-currency">₹</span><span id="currentPriceDisplay">1,299</span>
+              </div>
+              <div class="price-strikethrough">₹ 2,099.00</div>
+            </div>
+          </div>
+
+          <!-- Evocative Fragrance Description: Oud, Saffron & Amber Vibes -->
+          <p class="product-description">
+            A rich, opulent elixir fusing dark aged agarwood with precious crimson saffron, steeped in golden desert amber for an intoxicating, royal sillage.
+          </p>
+
+          <!-- Olfactory Notes Badges -->
+          <div class="card-notes-pills">
+            <div class="note-pill">
+              <span class="dot"></span>
+              <span>Aged Cambodian Oud</span>
+            </div>
+            <div class="note-pill">
+              <span class="dot"></span>
+              <span>Crimson Saffron</span>
+            </div>
+            <div class="note-pill">
+              <span class="dot"></span>
+              <span>Solar Desert Amber</span>
+            </div>
+          </div>
+
+          <!-- Bottom Action Row: Quantity Selector & Primary Desert Sand Button -->
+          <div class="card-actions-row">
+            <!-- Interactive Quantity Counter -->
+            <div class="qty-control" aria-label="Quantity Selector">
+              <button class="qty-btn" id="qtyMinus" aria-label="Decrease Quantity">&minus;</button>
+              <span class="qty-val" id="qtyDisplay">1</span>
+              <button class="qty-btn" id="qtyPlus" aria-label="Increase Quantity">&#43;</button>
+            </div>
+
+            <!-- Bold Desert Sand "+ ADD TO CART" Button -->
+            <button class="btn-add-to-cart" id="addToCartBtn">
+              <span>+ ADD TO CART</span>
+            </button>
+          </div>
+
+        </article>
+      </main>
+
+      <!-- Bottom Ambient Provenance Bar & Scroll Down Cue -->
+      <footer class="hero-footer" role="contentinfo">
+        <div class="footer-provenance">
+          <div class="prov-item">Aged Agarwood</div>
+          <div class="prov-item">Persian Saffron</div>
+          <div class="prov-item">Solar Amber</div>
+        </div>
+
+        <!-- Scroll down to Section 2 -->
+        <a href="#terre" class="scroll-cue-btn" aria-label="Explore L'Eau Terre">
+          <span>02 · L'EAU TERRE</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </a>
+
+        <div class="footer-edition-tag">
+          Arab Desert Edition · 2026
+        </div>
+      </footer>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 2: L'EAU TERRE (EARTH, TRAVERTINE & BOTANICALS)
+       Featuring @[photo/2.webp]
+       ========================================================== -->
+  <section class="hero-section section-terre" id="terre">
+    <div class="hero-inner">
+      
+      <!-- Center Stage: Frosted Glass Product Card (L'Eau Terre) -->
+      <div class="hero-stage" role="region" aria-label="L'Eau Terre Product Details">
+        <article class="arab-desert-card">
+          
+          <!-- Card Header: Title & Specs on Left, Pricing on Right -->
+          <div class="card-product-header">
+            <div class="card-title-col">
+              <h2 class="product-title">L'EAU TERRE</h2>
+              <div class="product-specs">
+                <span class="spec-line">MINERAL BOTANICAL EDITION</span>
+                <span class="spec-line">FOR HIM &amp; HER</span>
+                <span class="spec-line">50 ML &mdash; EAU DE PARFUM</span>
+              </div>
+            </div>
+
+            <!-- Price & Strikethrough Discount in Desert Sand Accent -->
+            <div class="card-price-col">
+              <div class="price-main">
+                <span class="price-currency">₹</span><span id="currentPriceDisplay2">1,299</span>
+              </div>
+              <div class="price-strikethrough">₹ 2,099.00</div>
+            </div>
+          </div>
+
+          <!-- Evocative Fragrance Description: Travertine stone, cedarwood and botanicals -->
+          <p class="product-description">
+            A luminous, grounding essence uniting warm travertine stone, wild coastal botanicals, and solar mineral amber wrapped in noble Mediterranean cedarwood.
+          </p>
+
+          <!-- Olfactory Notes Badges -->
+          <div class="card-notes-pills">
+            <div class="note-pill">
+              <span class="dot"></span>
+              <span>Sun-Baked Travertine</span>
+            </div>
+            <div class="note-pill">
+              <span class="dot"></span>
+              <span>Wild Coastal Thyme</span>
+            </div>
+            <div class="note-pill">
+              <span class="dot"></span>
+              <span>Solar Desert Amber</span>
+            </div>
+            <div class="note-pill">
+              <span class="dot"></span>
+              <span>Atlas Cedarwood</span>
+            </div>
+          </div>
+
+          <!-- Bottom Action Row: Quantity Selector & Primary Desert Sand Button -->
+          <div class="card-actions-row">
+            <!-- Interactive Quantity Counter -->
+            <div class="qty-control" aria-label="Quantity Selector">
+              <button class="qty-btn" id="qtyMinus2" aria-label="Decrease Quantity">&minus;</button>
+              <span class="qty-val" id="qtyDisplay2">1</span>
+              <button class="qty-btn" id="qtyPlus2" aria-label="Increase Quantity">&#43;</button>
+            </div>
+
+            <!-- Bold Desert Sand "+ ADD TO CART" Button -->
+            <button class="btn-add-to-cart" id="addToCartBtn2">
+              <span>+ ADD TO CART</span>
+            </button>
+          </div>
+
+        </article>
+      </div>
+
+      <!-- Bottom Ambient Provenance Bar & Scroll Up Cue -->
+      <footer class="hero-footer" role="contentinfo">
+        <div class="footer-provenance">
+          <div class="prov-item">Mineral Travertine</div>
+          <div class="prov-item">Wild Botanicals</div>
+          <div class="prov-item">Atlas Cedar</div>
+        </div>
+
+        <!-- Scroll down to Section 3 -->
+        <a href="#fresh" class="scroll-cue-btn" aria-label="Explore Zeesh Fresh">
+          <span>03 · ZEESH FRESH</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </a>
+
+        <div class="footer-edition-tag">
+          L'Eau Terre Collection · 2026
+        </div>
+      </footer>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 3: ZEESH FRESH (CITRUS, NEROLI & TRAVERTINE)
+       Featuring @[photo/3.webp]
+       ========================================================== -->
+  <section class="hero-section section-fresh" id="fresh">
+    <div class="hero-inner">
+      
+      <!-- Center Stage: Frosted Glass Product Card (Zeesh Fresh) -->
+      <div class="hero-stage" role="region" aria-label="Zeesh Fresh Product Details">
+        <article class="arab-desert-card">
+          
+          <!-- Card Header: Title & Specs on Left, Pricing on Right -->
+          <div class="card-product-header">
+            <div class="card-title-col">
+              <h2 class="product-title">ZEESH FRESH</h2>
+              <div class="product-specs">
+                <span class="spec-line">CITRUS &amp; SOLAR BOTANICALS</span>
+                <span class="spec-line">FOR HIM &amp; HER</span>
+                <span class="spec-line">50 ML &mdash; EAU DE PARFUM</span>
+              </div>
+            </div>
+
+            <!-- Price & Strikethrough Discount in Desert Sand Accent -->
+            <div class="card-price-col">
+              <div class="price-main">
+                <span class="price-currency">₹</span><span id="currentPriceDisplay3">1,299</span>
+              </div>
+              <div class="price-strikethrough">₹ 2,099.00</div>
+            </div>
+          </div>
+
+          <!-- Evocative Fragrance Description: Sun-drenched Mediterranean citrus & blooming neroli -->
+          <p class="product-description">
+            An uplifting, solar-drenched composition of sparkling Mediterranean citrus and blooming white neroli, resting atop dewy wild thyme and sun-warmed travertine amber.
+          </p>
+
+          <!-- Olfactory Notes Badges -->
+          <div class="card-notes-pills">
+            <div class="note-pill">
+              <span class="dot"></span>
+              <span>Calabrian Bergamot</span>
+            </div>
+            <div class="note-pill">
+              <span class="dot"></span>
+              <span>Blooming Neroli</span>
+            </div>
+            <div class="note-pill">
+              <span class="dot"></span>
+              <span>Dewy Wild Thyme</span>
+            </div>
+            <div class="note-pill">
+              <span class="dot"></span>
+              <span>Sunlit Travertine</span>
+            </div>
+          </div>
+
+          <!-- Bottom Action Row: Quantity Selector & Primary Desert Sand Button -->
+          <div class="card-actions-row">
+            <!-- Interactive Quantity Counter -->
+            <div class="qty-control" aria-label="Quantity Selector">
+              <button class="qty-btn" id="qtyMinus3" aria-label="Decrease Quantity">&minus;</button>
+              <span class="qty-val" id="qtyDisplay3">1</span>
+              <button class="qty-btn" id="qtyPlus3" aria-label="Increase Quantity">&#43;</button>
+            </div>
+
+            <!-- Bold Desert Sand "+ ADD TO CART" Button -->
+            <button class="btn-add-to-cart" id="addToCartBtn3">
+              <span>+ ADD TO CART</span>
+            </button>
+          </div>
+
+        </article>
+      </div>
+
+      <!-- Bottom Ambient Provenance Bar & Scroll Up Cue -->
+      <footer class="hero-footer" role="contentinfo">
+        <div class="footer-provenance">
+          <div class="prov-item">Italian Citrus</div>
+          <div class="prov-item">Neroli Blossom</div>
+          <div class="prov-item">Solar Amber</div>
+        </div>
+
+        <!-- Scroll back up to Section 1 -->
+        <a href="#hero" class="scroll-cue-btn scroll-up" aria-label="Back to Rich Oud">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
+          <span>01 · RICH OUD</span>
+        </a>
+
+        <div class="footer-edition-tag">
+          Zeesh Fresh Collection · 2026
+        </div>
+      </footer>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       FLOATING GIFT BOX (BOTTOM-LEFT CORNER)
+       ========================================================== -->
+  <button class="floating-gift-btn" id="giftBtn" aria-label="Claim Desert Gift Offer">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 12 20 22 4 22 4 12"></polyline>
+      <rect x="2" y="7" width="20" height="5"></rect>
+      <line x1="12" y1="22" x2="12" y2="7"></line>
+      <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+      <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+    </svg>
+  </button>
+
+  <!-- ==========================================================
+       SLIDE-OUT NAVIGATION DRAWER
+       ========================================================== -->
+  <div class="mobile-backdrop" id="backdrop"></div>
+  <aside class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+    <div class="drawer-header">
+      <span class="drawer-logo">Zeesh Parfume</span>
+      <button class="drawer-close" id="closeMenu" aria-label="Close menu">&times;</button>
+    </div>
+    <ul class="drawer-links">
+      <li><a href="#hero" onclick="closeNav()">01 Rich Oud <span class="tag">Desert</span></a></li>
+      <li><a href="#terre" onclick="closeNav()">02 L'Eau Terre <span class="tag">Mineral</span></a></li>
+      <li><a href="#fresh" onclick="closeNav()">03 Zeesh Fresh <span class="tag">Solar</span></a></li>
+      <li><a href="#creation" onclick="closeNav()">The Creation <span class="tag">Edition</span></a></li>
+      <li><a href="#notes" onclick="closeNav()">Olfactory Notes</a></li>
+      <li><a href="#heritage" onclick="closeNav()">Maison Heritage</a></li>
+      <li><a href="#discovery" onclick="closeNav()">Sample Discovery Set</a></li>
+    </ul>
+    <div>
+      <button class="btn-add-to-cart" style="width: 100%;" onclick="triggerAddToCart('RICH OUD', 1); closeNav();">
+        + ADD TO CART — ₹1,299
+      </button>
+    </div>
+  </aside>
+
+  <!-- ==========================================================
+       INTERACTIVE GIFT MODAL
+       ========================================================== -->
+  <div class="gift-modal-backdrop" id="giftModal">
+    <div class="gift-modal-card">
+      <div class="gift-modal-icon">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 12 20 22 4 22 4 12"></polyline>
+          <rect x="2" y="7" width="20" height="5"></rect>
+          <line x1="12" y1="22" x2="12" y2="7"></line>
+          <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+          <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+        </svg>
+      </div>
+      <h3 class="gift-modal-title">Desert Royal Gift</h3>
+      <p class="gift-modal-body">
+        Receive a complimentary <strong>5ml Miniature Discovery Flacon</strong> with rare saffron and warm amber notes, plus Free Express Shipping today.
+      </p>
+      <button class="btn-add-to-cart" style="width: 100%;" id="claimGiftBtn">
+        CLAIM COMPLIMENTARY GIFT
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-notification" id="toast">
+    <span class="toast-dot"></span>
+    <span id="toastMsg">Added to your shopping cart</span>
+  </div>
+
+  <!-- ==========================================================
+       JAVASCRIPT LOGIC
+       ========================================================== -->
+  <script>
+    // State
+    let quantity1 = 1;
+    let quantity2 = 1;
+    let quantity3 = 1;
+    let cartTotalItems = 0;
+    const basePrice1 = 1299;
+    const basePrice2 = 1299;
+    const basePrice3 = 1299;
+
+    // Elements - Product 1 (Rich Oud)
+    const qtyDisplay1 = document.getElementById('qtyDisplay');
+    const qtyMinus1 = document.getElementById('qtyMinus');
+    const qtyPlus1 = document.getElementById('qtyPlus');
+    const currentPriceDisplay1 = document.getElementById('currentPriceDisplay');
+    const addToCartBtn1 = document.getElementById('addToCartBtn');
+
+    // Elements - Product 2 (L'Eau Terre)
+    const qtyDisplay2 = document.getElementById('qtyDisplay2');
+    const qtyMinus2 = document.getElementById('qtyMinus2');
+    const qtyPlus2 = document.getElementById('qtyPlus2');
+    const currentPriceDisplay2 = document.getElementById('currentPriceDisplay2');
+    const addToCartBtn2 = document.getElementById('addToCartBtn2');
+
+    // Elements - Product 3 (Zeesh Fresh)
+    const qtyDisplay3 = document.getElementById('qtyDisplay3');
+    const qtyMinus3 = document.getElementById('qtyMinus3');
+    const qtyPlus3 = document.getElementById('qtyPlus3');
+    const currentPriceDisplay3 = document.getElementById('currentPriceDisplay3');
+    const addToCartBtn3 = document.getElementById('addToCartBtn3');
+
+    // Shared Elements
+    const cartCountBadge = document.getElementById('cartCountBadge');
+    const toast = document.getElementById('toast');
+    const toastMsg = document.getElementById('toastMsg');
+    
+    const openMenu = document.getElementById('openMenu');
+    const closeMenu = document.getElementById('closeMenu');
+    const drawer = document.getElementById('mobileDrawer');
+    const backdrop = document.getElementById('backdrop');
+
+    const giftBtn = document.getElementById('giftBtn');
+    const giftModal = document.getElementById('giftModal');
+    const claimGiftBtn = document.getElementById('claimGiftBtn');
+
+    // Quantity Handlers - Product 1
+    if (qtyMinus1) {
+      qtyMinus1.addEventListener('click', () => {
+        if (quantity1 > 1) {
+          quantity1--;
+          qtyDisplay1.textContent = quantity1;
+          currentPriceDisplay1.textContent = (basePrice1 * quantity1).toLocaleString('en-IN');
+        }
+      });
+    }
+
+    if (qtyPlus1) {
+      qtyPlus1.addEventListener('click', () => {
+        quantity1++;
+        qtyDisplay1.textContent = quantity1;
+        currentPriceDisplay1.textContent = (basePrice1 * quantity1).toLocaleString('en-IN');
+      });
+    }
+
+    // Quantity Handlers - Product 2
+    if (qtyMinus2) {
+      qtyMinus2.addEventListener('click', () => {
+        if (quantity2 > 1) {
+          quantity2--;
+          qtyDisplay2.textContent = quantity2;
+          currentPriceDisplay2.textContent = (basePrice2 * quantity2).toLocaleString('en-IN');
+        }
+      });
+    }
+
+    if (qtyPlus2) {
+      qtyPlus2.addEventListener('click', () => {
+        quantity2++;
+        qtyDisplay2.textContent = quantity2;
+        currentPriceDisplay2.textContent = (basePrice2 * quantity2).toLocaleString('en-IN');
+      });
+    }
+
+    // Quantity Handlers - Product 3
+    if (qtyMinus3) {
+      qtyMinus3.addEventListener('click', () => {
+        if (quantity3 > 1) {
+          quantity3--;
+          qtyDisplay3.textContent = quantity3;
+          currentPriceDisplay3.textContent = (basePrice3 * quantity3).toLocaleString('en-IN');
+        }
+      });
+    }
+
+    if (qtyPlus3) {
+      qtyPlus3.addEventListener('click', () => {
+        quantity3++;
+        qtyDisplay3.textContent = quantity3;
+        currentPriceDisplay3.textContent = (basePrice3 * quantity3).toLocaleString('en-IN');
+      });
+    }
+
+    // Add To Cart Functionality
+    function triggerAddToCart(productName, count) {
+      cartTotalItems += count;
+      cartCountBadge.textContent = cartTotalItems;
+      cartCountBadge.classList.add('pulse');
+      setTimeout(() => cartCountBadge.classList.remove('pulse'), 300);
+
+      showToast(`Added ${count}x ${productName} to cart!`);
+    }
+
+    if (addToCartBtn1) {
+      addToCartBtn1.addEventListener('click', () => triggerAddToCart('RICH OUD', quantity1));
+    }
+
+    if (addToCartBtn2) {
+      addToCartBtn2.addEventListener('click', () => triggerAddToCart("L'EAU TERRE", quantity2));
+    }
+
+    if (addToCartBtn3) {
+      addToCartBtn3.addEventListener('click', () => triggerAddToCart("ZEESH FRESH", quantity3));
+    }
+
+    function showToast(msg) {
+      toastMsg.textContent = msg;
+      toast.classList.add('active');
+      setTimeout(() => {
+        toast.classList.remove('active');
+      }, 2600);
+    }
+
+    // Navigation Drawer
+    function openNav() {
+      drawer.classList.add('open');
+      backdrop.classList.add('open');
+      drawer.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeNav() {
+      drawer.classList.remove('open');
+      backdrop.classList.remove('open');
+      drawer.setAttribute('aria-hidden', 'true');
+    }
+
+    if (openMenu) openMenu.addEventListener('click', openNav);
+    if (closeMenu) closeMenu.addEventListener('click', closeNav);
+    if (backdrop) backdrop.addEventListener('click', () => {
+      closeNav();
+      closeGiftModal();
+    });
+
+    // Gift Modal
+    function openGiftModal() {
+      giftModal.classList.add('open');
+    }
+    function closeGiftModal() {
+      giftModal.classList.remove('open');
+    }
+
+    if (giftBtn) giftBtn.addEventListener('click', openGiftModal);
+    if (claimGiftBtn) claimGiftBtn.addEventListener('click', () => {
+      closeGiftModal();
+      showToast('VIP Gift Applied: Complimentary 5ml Miniature Flacon added!');
+    });
+    if (giftModal) giftModal.addEventListener('click', (e) => {
+      if (e.target === giftModal) closeGiftModal();
+    });
+
+    // Header Action Placeholders
+    document.getElementById('searchBtn')?.addEventListener('click', () => {
+      showToast('Search catalog: Arab Desert & Terre Collection');
+    });
+    document.getElementById('userBtn')?.addEventListener('click', () => {
+      showToast('Welcome to Zeesh Parfume Maison Club');
+    });
+    document.getElementById('cartBtn')?.addEventListener('click', () => {
+      showToast(`Cart has ${cartTotalItems} item(s)`);
+    });
+
+    // Side Navigation Dots Active Highlight via IntersectionObserver
+    const sections = document.querySelectorAll('section.hero-section');
+    const navDots = document.querySelectorAll('.side-nav-dot');
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const currentId = entry.target.getAttribute('id');
+            navDots.forEach(dot => {
+              if (dot.getAttribute('data-section') === currentId) {
+                dot.classList.add('active');
+              } else {
+                dot.classList.remove('active');
+              }
+            });
+          }
+        });
+      }, {
+        threshold: 0.5
+      });
+
+      sections.forEach(sec => observer.observe(sec));
+    }
+
+    // Smooth Anchor Navigation Handler
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const hash = this.getAttribute('href');
+        if (hash && hash.length > 1) {
+          const target = document.querySelector(hash);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth' });
+            if (history.pushState) {
+              history.pushState(null, null, hash);
+            }
+          }
+        }
+      });
+    });
+
+    // Check if loaded with hash
+    if (window.location.hash) {
+      const target = document.querySelector(window.location.hash);
+      if (target) {
+        target.scrollIntoView({ behavior: 'auto' });
+      }
+    }
+  </script>
+</body>
+</html>
